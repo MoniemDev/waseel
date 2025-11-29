@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Header, PageContainer, BottomNav } from "@/components/layout";
-import { Button, Badge } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { RequestCard } from "@/components/features";
+import { PlusIcon } from "@/components/icons";
 
 const allRequests = [
   {
@@ -69,7 +70,10 @@ export default function RequestsPage() {
         title="طلبات الدم" 
         rightAction={
           <Link href="/requests/new">
-            <Button variant="primary" size="sm">+ طلب جديد</Button>
+            <Button variant="primary" size="sm" className="gap-1 px-3">
+              <PlusIcon size={16} />
+              <span>جديد</span>
+            </Button>
           </Link>
         }
       />
@@ -98,9 +102,9 @@ export default function RequestsPage() {
         </p>
 
         {/* Requests List */}
-        <div className="space-y-3">
+        <div className="flex flex-col gap-3">
           {filteredRequests.map((request) => (
-            <Link key={request.id} href={`/requests/${request.id}`}>
+            <Link key={request.id} href={`/requests/${request.id}`} className="block">
               <RequestCard {...request} />
             </Link>
           ))}
@@ -108,7 +112,9 @@ export default function RequestsPage() {
 
         {filteredRequests.length === 0 && (
           <div className="text-center py-12">
-            <span className="text-5xl mb-4 block">🔍</span>
+            <div className="w-16 h-16 bg-[var(--surface-secondary)] rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-3xl">🔍</span>
+            </div>
             <p className="text-[var(--text-secondary)]">لا توجد طلبات بهذه الفصيلة</p>
           </div>
         )}

@@ -1,20 +1,29 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, ReactNode } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Header, PageContainer, BottomNav } from "@/components/layout";
 import { Card, Avatar, BloodTypeBadge, Badge, Button } from "@/components/ui";
 import { useAuth } from "@/context/AuthContext";
+import {
+  EditIcon,
+  LocationIcon,
+  BellIcon,
+  ChartIcon,
+  TrophyIcon,
+  HelpIcon,
+  DocumentIcon,
+} from "@/components/icons";
 
-const menuItems = [
-  { icon: "👤", label: "تعديل الملف الشخصي", href: "/profile/edit" },
-  { icon: "📍", label: "تغيير المدينة", href: "/profile/location" },
-  { icon: "🔔", label: "إعدادات الإشعارات", href: "/profile/notifications" },
-  { icon: "📊", label: "سجل التبرعات", href: "/profile/history" },
-  { icon: "⭐", label: "نقاطي ومكافآتي", href: "/profile/points" },
-  { icon: "❓", label: "المساعدة والدعم", href: "/help" },
-  { icon: "📜", label: "الشروط والأحكام", href: "/terms" },
+const menuItems: { icon: ReactNode; label: string; href: string }[] = [
+  { icon: <EditIcon size={20} className="text-[var(--primary)]" />, label: "تعديل الملف الشخصي", href: "/profile/edit" },
+  { icon: <LocationIcon size={20} className="text-[var(--primary)]" />, label: "تغيير المدينة", href: "/profile/location" },
+  { icon: <BellIcon size={20} className="text-[var(--primary)]" />, label: "إعدادات الإشعارات", href: "/profile/notifications" },
+  { icon: <ChartIcon size={20} className="text-[var(--primary)]" />, label: "سجل التبرعات", href: "/profile/history" },
+  { icon: <TrophyIcon size={20} className="text-[var(--primary)]" />, label: "نقاطي ومكافآتي", href: "/profile/points" },
+  { icon: <HelpIcon size={20} className="text-[var(--primary)]" />, label: "المساعدة والدعم", href: "/help" },
+  { icon: <DocumentIcon size={20} className="text-[var(--primary)]" />, label: "الشروط والأحكام", href: "/terms" },
 ];
 
 const cityNames: Record<string, string> = {
@@ -109,7 +118,7 @@ export default function ProfilePage() {
                 index !== menuItems.length - 1 ? "border-b border-[var(--border)]" : ""
               }`}
             >
-              <span className="text-xl">{item.icon}</span>
+              <span className="flex items-center justify-center w-6">{item.icon}</span>
               <span className="flex-1 text-[var(--text-primary)]">{item.label}</span>
               <span className="text-[var(--text-tertiary)]">←</span>
             </Link>

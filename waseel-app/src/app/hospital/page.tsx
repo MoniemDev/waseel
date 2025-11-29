@@ -2,8 +2,15 @@
 
 import Link from "next/link";
 import { Header, PageContainer } from "@/components/layout";
-import { Card, Badge, Button } from "@/components/ui";
-import { StatsCard, RequestCard, DonorCard } from "@/components/features";
+import { Card, Badge } from "@/components/ui";
+import { RequestCard, DonorCard } from "@/components/features";
+import { 
+  BloodDropIcon, 
+  CheckIcon, 
+  UserIcon, 
+  EmergencyIcon,
+  SettingsIcon 
+} from "@/components/icons";
 
 const recentRequests = [
   {
@@ -50,46 +57,105 @@ export default function HospitalDashboard() {
         title="لوحة المستشفى" 
         subtitle="مستشفى الخرطوم التعليمي"
         rightAction={
-          <button className="w-10 h-10 rounded-full bg-[var(--surface)] flex items-center justify-center">
-            <span>⚙️</span>
+          <button className="w-11 h-11 rounded-full bg-[var(--surface)] flex items-center justify-center shadow-sm">
+            <SettingsIcon size={22} className="text-[var(--text-secondary)]" />
           </button>
         }
       />
 
-      <div className="px-4 py-4 space-y-6">
+      <div className="px-4 py-5 space-y-6">
         {/* Stats */}
         <div className="grid grid-cols-2 gap-3">
-          <StatsCard icon="🩸" value={12} label="طلبات نشطة" />
-          <StatsCard icon="✅" value={45} label="تم تلبيتها" />
-          <StatsCard icon="👥" value={230} label="متبرعين متاحين" />
-          <StatsCard icon="📊" value="85%" label="نسبة النجاح" />
+          <Card className="relative overflow-hidden py-5">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 to-transparent" />
+            <div className="absolute top-1 right-1 w-12 h-12 bg-[var(--primary)]/10 rounded-full blur-xl" />
+            <div className="relative flex items-center gap-3">
+              <div className="w-11 h-11 bg-[var(--primary)]/10 rounded-xl flex items-center justify-center">
+                <BloodDropIcon size={22} className="text-[var(--primary)]" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-[var(--text-primary)]">12</p>
+                <p className="text-xs text-[var(--text-secondary)]">طلبات نشطة</p>
+              </div>
+            </div>
+          </Card>
+          
+          <Card className="relative overflow-hidden py-5">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--success)]/5 to-transparent" />
+            <div className="absolute top-1 right-1 w-12 h-12 bg-[var(--success)]/10 rounded-full blur-xl" />
+            <div className="relative flex items-center gap-3">
+              <div className="w-11 h-11 bg-[var(--success)]/10 rounded-xl flex items-center justify-center">
+                <CheckIcon size={22} className="text-[var(--success)]" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-[var(--text-primary)]">45</p>
+                <p className="text-xs text-[var(--text-secondary)]">تم تلبيتها</p>
+              </div>
+            </div>
+          </Card>
+          
+          <Card className="relative overflow-hidden py-5">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--info)]/5 to-transparent" />
+            <div className="absolute top-1 right-1 w-12 h-12 bg-[var(--info)]/10 rounded-full blur-xl" />
+            <div className="relative flex items-center gap-3">
+              <div className="w-11 h-11 bg-[var(--info)]/10 rounded-xl flex items-center justify-center">
+                <UserIcon size={22} className="text-[var(--info)]" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-[var(--text-primary)]">230</p>
+                <p className="text-xs text-[var(--text-secondary)]">متبرعين متاحين</p>
+              </div>
+            </div>
+          </Card>
+          
+          <Card className="relative overflow-hidden py-5">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--warning)]/5 to-transparent" />
+            <div className="absolute top-1 right-1 w-12 h-12 bg-[var(--warning)]/10 rounded-full blur-xl" />
+            <div className="relative flex items-center gap-3">
+              <div className="w-11 h-11 bg-[var(--warning)]/10 rounded-xl flex items-center justify-center">
+                <span className="text-lg font-bold text-[var(--warning)]">%</span>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-[var(--text-primary)]">85%</p>
+                <p className="text-xs text-[var(--text-secondary)]">نسبة النجاح</p>
+              </div>
+            </div>
+          </Card>
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           <Link href="/hospital/requests/new">
-            <Card className="text-center py-5 bg-[var(--primary)] text-white">
-              <span className="text-3xl mb-2 block">🆘</span>
-              <p className="font-semibold">طلب دم جديد</p>
+            <Card className="relative overflow-hidden h-[100px] flex flex-col items-center justify-center text-center bg-[var(--primary)] text-white">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+              <div className="absolute top-2 left-2 w-16 h-16 bg-white/10 rounded-full blur-xl" />
+              <div className="relative">
+                <EmergencyIcon size={28} className="mx-auto mb-2" />
+                <p className="font-semibold">طلب دم جديد</p>
+              </div>
             </Card>
           </Link>
           <Link href="/hospital/donors">
-            <Card className="text-center py-5">
-              <span className="text-3xl mb-2 block">👥</span>
-              <p className="font-semibold text-[var(--text-primary)]">قاعدة المتبرعين</p>
+            <Card className="relative overflow-hidden h-[100px] flex flex-col items-center justify-center text-center">
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--info)]/5 to-transparent" />
+              <div className="absolute top-2 right-2 w-16 h-16 bg-[var(--info)]/10 rounded-full blur-xl" />
+              <div className="relative">
+                <UserIcon size={28} className="mx-auto mb-2 text-[var(--info)]" />
+                <p className="font-semibold text-[var(--text-primary)]">قاعدة المتبرعين</p>
+              </div>
             </Card>
           </Link>
         </div>
 
         {/* Active Requests */}
         <div>
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-[var(--text-primary)]">الطلبات النشطة</h3>
-            <Link href="/hospital/requests" className="text-sm text-[var(--primary)]">
+            <Link href="/hospital/requests" className="text-sm text-[var(--primary)] font-medium">
               عرض الكل
             </Link>
           </div>
-          <div className="space-y-3">
+          <div className="flex flex-col gap-3">
             {recentRequests.map((request) => (
               <RequestCard key={request.id} {...request} />
             ))}
@@ -98,13 +164,13 @@ export default function HospitalDashboard() {
 
         {/* Available Donors */}
         <div>
-          <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-[var(--text-primary)]">متبرعين متاحين</h3>
-            <Link href="/hospital/donors" className="text-sm text-[var(--primary)]">
+            <Link href="/hospital/donors" className="text-sm text-[var(--primary)] font-medium">
               عرض الكل
             </Link>
           </div>
-          <div className="space-y-3">
+          <div className="flex flex-col gap-3">
             {availableDonors.map((donor, index) => (
               <DonorCard key={index} {...donor} onContact={() => {}} />
             ))}
